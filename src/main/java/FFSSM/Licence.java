@@ -7,17 +7,17 @@ import java.time.LocalDate;
 
 public class Licence {
 
-    public Personne possesseur;
+    private Plongeur possesseur;
 
-    public String numero;
+    private String numero;
 
-    public LocalDate delivrance;
+    private LocalDate delivrance;
 
-    public int niveau;
+    private int niveau;
 
-    public Club club;
+    private Club club;
 
-    public Licence(Personne possesseur, String numero, LocalDate delivrance, int niveau, Club club) {
+    public Licence(Plongeur possesseur, String numero, LocalDate delivrance, int niveau, Club club) {
         this.possesseur = possesseur;
         this.numero = numero;
         this.delivrance = delivrance;
@@ -25,7 +25,7 @@ public class Licence {
         this.club = club;
     }
 
-    public Personne getPossesseur() {
+    public Plongeur getPossesseur() {
         return possesseur;
     }
 
@@ -52,8 +52,11 @@ public class Licence {
      * @return vrai si valide à la date d
      **/
     public boolean estValide(LocalDate d) {
-         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        boolean valide = true;
+         if (delivrance.until(d).getYears() > 1){
+             valide=false;
+         }
+         return valide;
     }
 
 }
